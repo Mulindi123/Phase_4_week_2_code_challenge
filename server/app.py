@@ -1,4 +1,4 @@
-from flask import Flask, make_response, jsonify
+from flask import Flask, make_response, jsonify, request
 from flask_migrate import Migrate
 from flask_restful import Api, Resource
 
@@ -87,6 +87,49 @@ class Pizzas(Resource):
         return make_response(jsonify(pizzas_list), 200)
 
 api.add_resource(Pizzas, "/pizzas", endpoint="pizzas")
+
+class RestaurantPizzas(Resource):
+    def post(self):
+        data = request.get_json()
+
+        price = data.get("price")
+        pizza_id = data.get("pizza_id")
+        restaurant_id = data.get("restaurant_id")
+
+        if not price and pizza_id and restaurant_id:
+            
+            return make_response({"error":"All parameters (price, pizza_id , restaurant_id) are required!"}, 400)
+        
+        #check if pizza and restaurant exist
+
+        pizza = Pizza.query.get(pizza_id)
+        restaurant = Restaurant.query.get(restaurant_id)
+
+        if not pizza or not restaurant:
+            return make_response({"error":"pizza or restaurant not found."}, 404)
+        
+        #create a RestaurantPizza record
+        restaurant_pizza = RestaurantPizza(
+            price = price,
+            pizza_id = pizza_id,
+            restaurant_id = restaurant_id
+        )
+        db.session.add(restaurant_pizza)
+        db.session.commit()
+
+        related_pizza = Pizza.query.get(pizza_id)
+        if related_pizza:
+            related_pizza_dict = {
+                "id": related_pizza.id,
+                "name": related_pizza.name,
+                "ingredients": related_pizza.ingredients     
+            }
+
+            return make_response(jsonify(related_pizza_dict), 201)
+        
+        return make_response({"error": "Related pizza not found"}, 404)
+
+api.add_resource(RestaurantPizzas, "/restaurant_pizzas", endpoint="restaurant_pizzas")
 
 if __name__ == "__main__":
     app.run(port=5555, debug=True)
