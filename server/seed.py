@@ -41,17 +41,24 @@ with app.app_context():
     for restaurant in restaurants:
         for _ in range(3):
             pizza = rc(pizzas)
-            price = randint(5, 12)
+            price = randint(1, 30)
             restaurant_pizza = RestaurantPizza(
                 restaurant_id= restaurant.id,
                 pizza_id =pizza.id,
                 price=price
             )
 
+            print(f"Adding restaurant_pizza: {restaurant_pizza}")
+            
             restaurant_pizzas.append(restaurant_pizza)
     db.session.add_all(restaurant_pizzas)
 
     db.session.commit()
+
+    try:
+        db.session.commit()
+    except Exception as e:
+        print(f"An error occurred during commit: {e}")
 
     restaurant = Restaurant.query.all()
     pizza = Pizza.query.all()
