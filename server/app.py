@@ -1,6 +1,7 @@
 from flask import Flask, make_response, jsonify, request
 from flask_migrate import Migrate
 from flask_restful import Api, Resource
+from flask_cors import CORS
 
 from models import db, Restaurant, Pizza, RestaurantPizza
 
@@ -13,6 +14,7 @@ app.json.compact = False
 
 migrate = Migrate(app, db)
 
+CORS(app, origins="http://localhost:3000/")
 api =Api(app)
 
 db.init_app(app)
@@ -31,7 +33,11 @@ class Restaurants(Resource):
 
             restaurants_list.append(restaurant_dict)
 
-        return make_response(jsonify(restaurants_list), 200)
+        response = make_response(jsonify(restaurants_list), 200)
+
+        response.headers["Content-Type"] = "application/json"
+
+        return response
 
 api.add_resource(Restaurants, "/restaurants", endpoint="restaurants")
 
