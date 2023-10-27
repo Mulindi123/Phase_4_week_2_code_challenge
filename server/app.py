@@ -35,5 +35,21 @@ class Restaurants(Resource):
 
 api.add_resource(Restaurants, "/restaurants", endpoint="restaurants")
 
+class RestaurantByID(Resource):
+    def get(self, id):
+
+        restaurant = Restaurant.query.filter_by(id=id).first()
+        if restaurant:
+
+            restaurant_dict = restaurant.to_dict()
+        
+            response =  make_response(jsonify(restaurant_dict), 200)
+        else:
+            response =  make_response({"error": "Restaurant not fount"}, 404)
+
+        return response
+        
+api.add_resource(RestaurantByID, "/restaurants/<int:id>", endpoint="restaurants/<int:id>")
+
 if __name__ == "__main__":
     app.run(port=5555, debug=True)
