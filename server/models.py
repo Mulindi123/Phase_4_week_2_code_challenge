@@ -1,11 +1,13 @@
 from flask_sqlalchemy import SQLAlchemy
-
+from sqlalchemy_serializer import SerializerMixin
 
 
 db =SQLAlchemy()
 
-class Restaurant(db.Model):
+class Restaurant(db.Model, SerializerMixin):
     __tablename__ = "restaurants"
+
+    serialize_rules = ("-pizzas.restaurants",)
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, nullable=False)
@@ -17,8 +19,10 @@ class Restaurant(db.Model):
     def __repr__(self):
         return f"Restaurant: {self.name}, address {self.address}"
     
-class Pizza(db.Model):
+class Pizza(db.Model, SerializerMixin):
     __tablename__ = "pizzas"
+
+    serialize_rules = ("-restaurants.pizzas",)
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, nullable=False)
@@ -30,7 +34,7 @@ class Pizza(db.Model):
     def __repr__(self):
         return f"Pizza: {self.name}, ingredients {self.ingredients}"
 
-class RestaurantPizza(db.Model):
+class RestaurantPizza(db.Model, SerializerMixin):
     __tablename__ = "restaurant_pizzas"
 
     id = db.Clumn(db.Integer, primary_key=True)
