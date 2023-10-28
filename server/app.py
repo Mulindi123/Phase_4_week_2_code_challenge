@@ -13,11 +13,11 @@ app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] =False
 app.json.compact = False
 
 migrate = Migrate(app, db)
-
-CORS(app, origins="http://localhost:3000/")
-api =Api(app)
-
 db.init_app(app)
+
+api =Api(app)
+CORS(app, origins="*")
+
 
 class Restaurants(Resource):
     def get(self):

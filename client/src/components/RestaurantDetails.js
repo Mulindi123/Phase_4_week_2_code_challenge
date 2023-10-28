@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const RestaurantDetails = ({ restaurant }) => {
+const RestaurantDetails = ({ restaurant , onDeleteRestaurant}) => {
     const [selectedRestaurant, setSelectedRestaurant] = useState(restaurant);
 
     useEffect(() => {
@@ -25,6 +25,13 @@ const RestaurantDetails = ({ restaurant }) => {
         }
     }, [restaurant]);
 
+    function handleDelete(){
+        fetch(`http://localhost:5000/restaurants/${restaurant.id}`, {
+            method: "DELETE"
+        });
+
+        onDeleteRestaurant(restaurant.id)
+    }
 
     return ( <div>
             {selectedRestaurant ? (
@@ -40,6 +47,7 @@ const RestaurantDetails = ({ restaurant }) => {
                             </li>
                         ))}
                     </ul>
+                    <button onClick={() => handleDelete(restaurant.id)}>Delete</button>
                 </div>
             ):(
                 <p>Loading...</p>

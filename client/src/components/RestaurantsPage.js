@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import RestaurantCard from "./RestaurantCard"
+import RestaurantCard from "./RestaurantsCard"
 import RestaurantDetails from "./RestaurantDetails"
 
 const ResaurantPage = () => {
@@ -15,9 +15,14 @@ const ResaurantPage = () => {
         })
     }, [])
 
+function handleDeleteRestaurant(id){
+    const updatedRestaurants = restaurants.filter((restaurant) => restaurant.id !== id)
+    setRestaurants(updatedRestaurants)
+}
+
     return ( <div>
         <RestaurantCard restaurants={restaurants} setSelectedRestaurant={setSelectedRestaurant} />
-        <RestaurantDetails restaurant={selectedRestaurant} />
+        <RestaurantDetails restaurant={selectedRestaurant} onDeleteRestaurant={handleDeleteRestaurant} />
     </div> );
 }
  
