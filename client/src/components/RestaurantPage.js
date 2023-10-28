@@ -1,26 +1,24 @@
 import { useEffect, useState } from "react"
+import RestaurantCard from "./RestaurantCard"
+import RestaurantDetails from "./RestaurantDetails"
 
-const Home = () => {
+const ResaurantPage = () => {
     const [restaurants, setRestaurants] = useState([])
+    const [selectedRestaurant, setSelectedRestaurant] = useState(null);
     
     useEffect(() => {
         fetch("http://localhost:5000/restaurants")
         .then( r => r.json())
-        .then((data) => setRestaurants(data))
+        .then((data) => {
+            setRestaurants(data)
+            console.log(data)
+        })
     }, [])
 
     return ( <div>
-        <h1>Restaurants</h1>
-        <ul>
-            {restaurants.map((restaurant) =>(
-                <div key={restaurant.id}>
-                    <h2>Restaurant Id: {restaurant.id}</h2>
-                    <h3>Restaunt Name: {restaurant.name}</h3>
-                    <p>Address: {restaurant.address}</p>
-                </div>
-            ))}
-        </ul>
+        <RestaurantCard restaurants={restaurants} setSelectedRestaurant={setSelectedRestaurant} />
+        <RestaurantDetails restaurant={selectedRestaurant} />
     </div> );
 }
  
-export default Home;
+export default ResaurantPage;
