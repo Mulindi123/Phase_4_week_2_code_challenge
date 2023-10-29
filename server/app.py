@@ -95,6 +95,27 @@ class Pizzas(Resource):
 api.add_resource(Pizzas, "/pizzas", endpoint="pizzas")
 
 class RestaurantPizzas(Resource):
+
+    def get(self):
+        restaurant_pizzas = RestaurantPizza.query.all()
+
+        pizzas_list = []
+        for restaurant_pizza in restaurant_pizzas:
+            pizza = Pizza.query.get(restaurant_pizza.pizza_id)
+            restaurant = Restaurant.query.get(restaurant_pizza.restaurant_id)
+
+            if pizza and restaurant:
+
+                pizza_dict = {
+                    "id": pizza.id,
+                    "name": pizza.name,
+                    "ingredients": pizza.ingredients     
+                }
+
+                pizzas_list.append(pizza_dict)
+
+        return make_response(jsonify(pizzas_list), 200)
+    
     def post(self):
         data = request.get_json()
 
