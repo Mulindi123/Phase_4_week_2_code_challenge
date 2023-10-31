@@ -25,11 +25,21 @@ with app.app_context():
 
 
     pizzas =[]
-    for a in range(10):
-        pizza = Pizza(
-            name = fake.word(),
-            ingredients = fake.sentence()
-        )
+
+    pizza_list = [
+    {"name": "Margherita", "ingredients": "Tomato sauce, Mozzarella cheese, Fresh basil, Olive oil, Salt"},
+    {"name": "Pepperoni", "ingredients": "Tomato sauce, Mozzarella cheese, Pepperoni slices"},
+    {"name": "Vegetarian", "ingredients": "Tomato sauce, Mozzarella cheese, Bell peppers, Mushrooms, Onions, Olives"},
+    {"name": "Hawaiian", "ingredients": "Tomato sauce, Mozzarella cheese, Ham, Pineapple"},
+    {"name": "BBQ Chicken", "ingredients": "BBQ sauce, Mozzarella cheese, Grilled chicken, Red onions, Cilantro"},
+    {"name": "Supreme", "ingredients": "Tomato sauce, Mozzarella cheese, Pepperoni, Sausage, Bell peppers, Onions, Olives, Mushrooms"},
+    {"name": "White Pizza", "ingredients": "Olive oil, Mozzarella cheese, Ricotta cheese, Garlic, Spinach, Parmesan cheese"},
+    {"name": "Mushroom Truffle", "ingredients": "Truffle oil, Mozzarella cheese, Mushrooms, Garlic, Thyme, Parmesan cheese"},
+    {"name": "Buffalo Chicken", "ingredients": "Buffalo sauce, Mozzarella cheese, Grilled chicken, Red onions, Cilantro, Blue cheese dressing"},
+    {"name": "Meat Lovers", "ingredients": "Tomato sauce, Mozzarella cheese, Pepperoni, Sausage, Bacon, Ground beef"},
+]
+    for data in pizza_list:
+        pizza = Pizza(name = data["name"],ingredients = data["ingredients"])
 
         pizzas.append(pizza)
     db.session.add_all(pizzas)

@@ -18,6 +18,12 @@ db.init_app(app)
 api =Api(app)
 CORS(app, origins="*")
 
+class Index(Resource):
+    def get(self):
+        return make_response(jsonify("Pizza App"))
+    
+api.add_resource(Index, "/")
+
 
 class Restaurants(Resource):
     def get(self):
@@ -114,7 +120,7 @@ class RestaurantPizzas(Resource):
 
                 pizzas_list.append(pizza_dict)
 
-        return make_response(jsonify(pizzas_list), 200)
+        return make_response(jsonify(pizzas_list), 200) 
     
     def post(self):
         data = request.get_json()
