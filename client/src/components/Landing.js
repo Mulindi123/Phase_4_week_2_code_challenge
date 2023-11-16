@@ -1,18 +1,33 @@
-import { Link, Outlet } from "react-router-dom";
+import { Outlet} from "react-router-dom";
+import {
+    Breadcrumb,
+    BreadcrumbItem,
+    BreadcrumbLink,
+    // BreadcrumbSeparator,
+    Button
+  } from '@chakra-ui/react'
+import { ChevronRightIcon} from "@chakra-ui/icons"
 
 
 
 function Landing(){
     return (
         <div>
-             <div className="navbar">
-                <h1 className="landing-header">Pizza App</h1>
-                <nav className="nav-items">
-                    <button><Link to='/home'></Link><span>RestaurantsPage</span></button>
-                    <button><Link to='/cart'></Link><span>RetaurantDetails</span></button>
-                </nav>
-            </div> 
-            <Outlet></Outlet> 
+
+        <Breadcrumb spacing='8px' separator={<ChevronRightIcon color='gray.500' />}>
+        <BreadcrumbItem p={4}>
+        <Button colorScheme='blue' p={4}><BreadcrumbLink href='/'>Restaurants</BreadcrumbLink></Button>
+        </BreadcrumbItem>
+
+        <BreadcrumbItem>
+        <BreadcrumbLink href='/pizzas'>Pizza</BreadcrumbLink>
+        </BreadcrumbItem>
+
+        <BreadcrumbItem isCurrentPage>
+        <BreadcrumbLink href='#'>Contact</BreadcrumbLink>
+        </BreadcrumbItem>
+        </Breadcrumb>
+        <Outlet></Outlet> 
         </div>
     )
 }
