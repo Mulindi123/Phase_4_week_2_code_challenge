@@ -4,7 +4,11 @@ module.exports = {
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors:{
+        'slate-600': '#475569', // This is the default slate-600 color, added here for customization
+      },
+    },
   },
   plugins: [],
 }

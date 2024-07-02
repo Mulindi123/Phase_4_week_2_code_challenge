@@ -7,7 +7,7 @@ import PostRestaurantPizzas from './PostRestaurantPizzas';
 
 function App() {
   return (
-    <div className="App">
+    <div className="bg-slate-500 min-h-screen">
     <Routes>
       <Route element= {<Landing/>}>
         <Route path= "/" element={<RestaurantPage />} />
