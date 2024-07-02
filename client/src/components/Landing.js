@@ -12,26 +12,27 @@ import { ChevronRightIcon} from "@chakra-ui/icons"
 
 function Landing(){
     return (
-        <div>
+        <div className="">
+            <Breadcrumb spacing='8px' separator={<ChevronRightIcon color='gray.500' />}>
+                <BreadcrumbItem p={4}>
+                    <Button colorScheme='blue' p={4}><BreadcrumbLink href='/'>Restaurants</BreadcrumbLink></Button>
+                </BreadcrumbItem>
 
-        <Breadcrumb spacing='8px' separator={<ChevronRightIcon color='gray.500' />}>
-        <BreadcrumbItem p={4}>
-        <Button colorScheme='blue' p={4}><BreadcrumbLink href='/'>Restaurants</BreadcrumbLink></Button>
-        </BreadcrumbItem>
+                <BreadcrumbItem p={4}>
+                    <Button colorScheme="blue" p={4}><BreadcrumbLink href='/pizzas'>Pizza</BreadcrumbLink></Button>
+                </BreadcrumbItem>
 
-        <BreadcrumbItem>
-        <BreadcrumbLink href='/pizzas'>Pizza</BreadcrumbLink>
-        </BreadcrumbItem>
+                <BreadcrumbItem p={4}>
+                    <Button colorScheme="blue" p={4}><BreadcrumbLink href='/restaurantPizzas'>Add Pizza</BreadcrumbLink></Button>
+                </BreadcrumbItem>
 
-        <BreadcrumbItem>
-        <BreadcrumbLink href='/restaurantPizzas'>Post</BreadcrumbLink>
-        </BreadcrumbItem>
-
-        <BreadcrumbItem isCurrentPage>
-        <BreadcrumbLink href='#'>Contact</BreadcrumbLink>
-        </BreadcrumbItem>
-        </Breadcrumb>
-        <Outlet></Outlet> 
+                <BreadcrumbItem p={4}>
+                    <Button colorScheme="blue" p={4} value={'outline'} className="m-2"><BreadcrumbLink href='/contact'>Contact</BreadcrumbLink></Button>
+                </BreadcrumbItem>
+            </Breadcrumb>
+            <div className="">
+                <Outlet />
+            </div>
         </div>
     )
 }

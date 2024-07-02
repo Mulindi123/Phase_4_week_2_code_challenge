@@ -4,6 +4,7 @@ import RestaurantPage from "./RestaurantsPage";
 import Landing from "./Landing";
 import Pizzas from './Pizzas';
 import PostRestaurantPizzas from './PostRestaurantPizzas';
+import Contact from './Contact';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path= "/" element={<RestaurantPage />} />
         <Route path= "/pizzas" element={<Pizzas />} />
         <Route path= "/restaurantPizzas" element={<PostRestaurantPizzas />} />
+        <Route path= "/contact" element={<Contact />} />
       </Route>
     </Routes>
       

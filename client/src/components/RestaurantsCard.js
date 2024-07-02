@@ -1,7 +1,7 @@
 const RestaurantCard = ({ restaurants, setSelectedRestaurant }) => {
     return (
         <div className="container mx-auto mb-10 p-4">
-            <h1 className="text-3xl text-center p-4 font-bold mb-4 text-blue-500">Restaurants</h1>
+            <h1 className="text-3xl text-center p-4 font-bold mb-4">Restaurants</h1>
             <table className="min-w-full mb-10 bg-slate-400 border border-gray-200 justify-center">
                 <thead>
                     <tr>
