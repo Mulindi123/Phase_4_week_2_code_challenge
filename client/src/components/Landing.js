@@ -23,6 +23,10 @@ function Landing(){
         <BreadcrumbLink href='/pizzas'>Pizza</BreadcrumbLink>
         </BreadcrumbItem>
 
+        <BreadcrumbItem>
+        <BreadcrumbLink href='/restaurantPizzas'>Post</BreadcrumbLink>
+        </BreadcrumbItem>
+
         <BreadcrumbItem isCurrentPage>
         <BreadcrumbLink href='#'>Contact</BreadcrumbLink>
         </BreadcrumbItem>
