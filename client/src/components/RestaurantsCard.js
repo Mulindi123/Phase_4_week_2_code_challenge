@@ -1,18 +1,36 @@
 const RestaurantCard = ({ restaurants, setSelectedRestaurant }) => {
-    return (<div>
-                <h1>Restaurants</h1>
-        <ul>
-            {restaurants.map((restaurant) =>(
-                <div key={restaurant.id}>
-                    <h2>Restaurant Id: {restaurant.id}</h2>
-                    <h3>Restaunt Name: {restaurant.name}</h3>
-                    <p>Address: {restaurant.address}</p>
-                    <button onClick={() => setSelectedRestaurant(restaurant)}>View Details</button> 
-                </div>
-            ))}
-        </ul>
+    return (
+        <div className="container mx-auto mb-10 p-4 bg-slate-600 ">
+            <h1 className="text-3xl text-center p-4 font-bold mb-4 text-blue-500">Restaurants</h1>
+            <table className="min-w-full mb-10 bg-slate-400 border border-gray-200 justify-center">
+                <thead>
+                    <tr>
+                        <th className="py-2 px-4 border-b">Restaurant Id</th>
+                        <th className="py-2 px-4 border-b">Restaurant Name</th>
+                        <th className="py-2 px-4 border-b">Address</th>
+                        <th className="py-2 px-4 border-b">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {restaurants.map((restaurant) => (
+                        <tr key={restaurant.id} className="text-center">
+                            <td className="py-2 px-4 border-b">{restaurant.id}</td>
+                            <td className="py-2 px-4 border-b">{restaurant.name}</td>
+                            <td className="py-2 px-4 border-b">{restaurant.address}</td>
+                            <td className="py-2 px-4 border-b">
+                                <button
+                                    className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700"
+                                    onClick={() => setSelectedRestaurant(restaurant)}
+                                >
+                                    View Details
+                                </button>
+                            </td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        </div>
+    );
+};
 
-    </div>  );
-}
- 
 export default RestaurantCard;
