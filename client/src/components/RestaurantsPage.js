@@ -20,7 +20,8 @@ function handleDeleteRestaurant(id){
     setRestaurants(updatedRestaurants)
 }
 
-    return ( <div>
+    return (
+     <div className="">
         <RestaurantCard restaurants={restaurants} setSelectedRestaurant={setSelectedRestaurant} />
         <RestaurantDetails restaurant={selectedRestaurant} onDeleteRestaurant={handleDeleteRestaurant} />
     </div> );

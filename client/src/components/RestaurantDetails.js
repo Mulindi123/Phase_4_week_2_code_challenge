@@ -66,7 +66,7 @@ const RestaurantDetails = ({ restaurant, onDeleteRestaurant }) => {
                     </button>
                 </div>
             ) : (
-                <p>Loading...</p>
+                <p className="text-3xl">Loading...</p>
             )}
         </div>
     );
