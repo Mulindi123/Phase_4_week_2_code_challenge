@@ -165,4 +165,4 @@ class RestaurantPizzas(Resource):
 api.add_resource(RestaurantPizzas, "/restaurant_pizzas", endpoint="restaurant_pizzas")
 
 if __name__ == "__main__":
-    app.run(port=5555, debug=True)
+    app.run(port=5000, debug=True)
