@@ -19,7 +19,7 @@ const RestaurantCard = ({ restaurants, setSelectedRestaurant }) => {
                             <td className="py-2 px-4 border-b">{restaurant.address}</td>
                             <td className="py-2 px-4 border-b">
                                 <button
-                                    className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700"
+                                    className="bg-gray-950 text-white px-4 py-2 rounded-lg hover:bg-blue-700"
                                     onClick={() => setSelectedRestaurant(restaurant)}
                                 >
                                     View Details
