@@ -13,15 +13,28 @@ const Pizzas = () => {
     }, [])
     
     return ( <div>
-            <h1>Pizzas</h1>
-            {pizzas.map((pizza)=>(
-                <div key={pizza.id}>
-                    <h2>ID: {pizza.id}</h2>
-                    <p>Name: {pizza.name}</p>
-                    <p>Ingredients: {pizza.ingredients}</p>
-                </div>
+        <h1>Pizzas</h1>
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Ingredients</th>
+            </tr>
+          </thead>
+          <tbody>
+            {pizzas.map((pizza) => (
+              <tr key={pizza.id}>
+                <td>{pizza.id}</td>
+                <td>{pizza.name}</td>
+                <td>{pizza.ingredients}</td>
+              </tr>
             ))}
-    </div> );
+          </tbody>
+        </table>
+      </div>
+    );
+    
 }
  
 export default Pizzas;
